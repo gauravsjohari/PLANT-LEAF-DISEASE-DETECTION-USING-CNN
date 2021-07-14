@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>Detection</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'>
+<link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<center><img src="../static/logo.jpg"/></center>
+<h1 style="color: #0000">PLANT LEAF DISEASE DETECTION USING CNN</h1>
+<br>
+
+<div class="container">
+  <div class="form-group" x-data="{ fileName: '' }">
+
+    <form action="{{url_for('upload_file')}}" method='POST' enctype="multipart/form-data">
+    <div class="input-group shadow">
+      <span class="input-group-text px-3 text-muted"><i class="fas fa-image fa-lg"></i></span>
+      <input type="file" x-ref="file" @change="fileName = $refs.file.files[0].name" name="imageInput" class="d-none">
+      <input type="text" class="form-control form-control-lg" placeholder="Upload Image" x-model="fileName">
+      <button class="browse btn btn-primary px-4" type="button" x-on:click.prevent="$refs.file.click()"><i class="fas fa-image"></i> Browse</button>
+    </div>
+    <br><br>
+    <center><input class="btn btn-primary px-4" type="submit"/></center>
+   </form>
+
+  </div>
+
+  {% if fileName%}
+  <br><br>
+  
+  <center><img src="./static/uploads/{{fileName}}" alt="image unable to read" class="rounded mx-auto"  height="200px" width="200px"/></center>
+  <br>
+  <center><h4>{{result1}}</h4></center>
+<br>
+{{Message}}
+  
+
+{% if resultValue==1 | int%}
+
+<!-- USE HTML TAGS HERE  -->
+ Potato Disease: Early Blight<br/>
+                      
+                   -->Cause of disease:<br> 
+                      1. Early blight (EB) is a disease of potato caused by the fungus Alternaria solani. It is found wherever potatoes are grown.\\n
+                      2. The disease primarily affects leaves and stems, but under favorable weather conditions, and if left uncontrolled, can result in considerable defoliation and enhance the chance for tuber infection. Premature defoliation may lead to considerable reduction in yield.<br>
+                      3. Primary infection is difficult to predict since EB is less dependent upon specific weather conditions than late blight.<br></p>
+                      
+                    -->How to prevent/cure the disease 
+                          1. Plant only disease free, certified seed.<br> 
+                          2. Follow a complete and regular foliar fungicide spray program.<br> 
+                          3. Practice good killing techniques to lessen tuber infections.<br> 
+                          4. Allow tubers to mature before digging, dig when vines are dry, not wet, and avoid excessive wounding of potatoes during harvesting and handling."""
+
+
+{%elif resultValue==2 | int%}
+<b>Crop</b>: Potato <br/>Disease: No disease<br/>
+<br/><br/> Don't worry. Your crop is healthy. Keep it up !!!"""
+
+
+
+{%elif resultValue==3 | int %}
+
+<!-- Add HTML TAGS HERE -->
+
+Crop: Potato  Disease: Late Blight<br/>
+`                          
+                        -->Cause of disease:<br>
+                          Late blight is a potentially devastating disease of potato, infecting leaves, stems and fruits of plants. The disease spreads quickly in fields and can result in total crop failure if untreated. Late blight of potato was responsible for the Irish potato famine of the late 1840s.<br>             
+                          1. Late blight is caused by the oomycete Phytophthora infestans. Oomycetes are fungus-like organisms also called water molds, but they are not true fungi.<br>
+                          2. There are many different strains of P. infestans. These are called clonal lineages and designated by a number code (i.e. US-23). Many clonal lineages affect both tomato and potato, but some lineages are specific to one host or the other.<br>
+                          3. The host range is typically limited to potato and tomato, but hairy nightshade (Solanum physalifolium) is a closely related weed that can readily become infected and may contribute to disease spread. Under ideal conditions, such as a greenhouse, petunia also may become infected.<br></p>
+
+
+                        -->How to prevent/cure the disease
+                          1. Seed infection is unlikely on commercially prepared tomato seed or on saved seed that has been thoroughly dried.<br> 
+
+                          2. Inspect tomato transplants for late blight symptoms prior to purchase and/or planting, as tomato transplants shipped from southern regions may be infected<br> 
+
+                          3. If infection is found in only a few plants within a field, infected plants should be removed, disced-under, killed with herbicide or flame-k`illed to avoid spreading through the entire field."""
+
+       
+
+
+
+
+{%endif%}
+
+
+{% endif %}
+
+
+  
+
+
+</div>
+
+<!-- RUN N CHECK -->
+
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js'></script>
+</body>
+</html>
